@@ -17,6 +17,19 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Socket socket = new Socket("127.0.0.1", 3000);
+        long reqID;
+        int itemCount;
+        float budget;
+        int prod_id;
+        String title;
+        float price;
+        int rating;
+        float currbudget;
+
+        
+
+
+
         final OutputStream os = socket.getOutputStream();
         final OutputStreamWriter osw = new OutputStreamWriter(os);
         final BufferedWriter bw = new BufferedWriter(osw);
@@ -51,11 +64,42 @@ public class Main {
 
         
 
+        
 
 
+        String[] lines = br.readLine().trim().split("/n//s");
 
-        String line = br.readLine();
-        System.out.printf(">%s\n", line);
+        String command;
+
+        for (int x = 0; x <= lines.length; x++) {
+            command = lines[x];
+
+            switch (command) {
+
+                case ("prod_start"): {
+                Product itemOne = new Product(lines[x+1],lines[x+2],lines[x+3],lines[x+4]);
+
+                }
+                
+
+
+            
+                default: {}
+                
+
+
+            }
+
+            
+
+        }
+
+        
+
+
+        
+        
+        
 
 
         
