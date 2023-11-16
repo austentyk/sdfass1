@@ -22,25 +22,31 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         
-        //if (args.length<= 0 ) {
-        //    System.err.println("No filename provided.");
-        //    System.exit(1);
-        //}
+        if (args.length<= 0 ) {
+           System.err.println("No filename provided.");
+           System.exit(1);
+        }
 
         System.out.printf("Reading...");
 
-        try (FileReader fr = new FileReader("/Users/ttq/Desktop/NUS/sdfassessment1/task01/googleplaystore.csv")) {
+        try (FileReader fr = new FileReader(args[0])) {
             BufferedReader br = new BufferedReader(fr);
             List<Game> record = br.lines().skip(0)
             .map(row -> row.trim().split(","))
             .map(fields -> new Game(fields[AppCategory], fields[AppName], fields[Rating]))
             .toList();
             
-            
+    
+
+            if(record.contains("NaN")) {
+                nullCount ++; 
+            }
+        
             System.out.println(record.get(1));
 
             for (int y = 1 ; record.get(y) != null ; y ++) {
                 System.out.println(record.get(y));
+                linesCount++;
             }
             // String[] records = record.stream().map(Game::toString).toArray(String[]::new);
          
